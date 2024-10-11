@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Datos Personales</h2>
+    <div class="formulario-container">
+      <!-- Formulario alineado a la izquierda -->
+      <form [formGroup]="formulario" (ngSubmit)="calcularDatos()">
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" formControlName="nombre" type="text" required />
+  
+        <label for="apellido">Apellido:</label>
+        <input id="apellido" formControlName="apellido" type="text" required />
+  
+        <label for="dia">Fecha de Nacimiento:</label>
+        <div class="fecha-nacimiento">
+          <input id="dia" formControlName="dia" type="text" placeholder="Día" required />
+          <input id="mes" formControlName="mes" type="text" placeholder="Mes" required />
+          <input id="anio" formControlName="anio" type="text" placeholder="Año" required />
+        </div>
+  
+        <label>Sexo:</label>
+        <label>
+          <input type="radio" formControlName="sexo" value="Masculino" /> Masculino
+        </label>
+        <label>
+          <input type="radio" formControlName="sexo" value="Femenino" /> Femenino
+        </label>
+  
+        <button type="submit">Imprimir</button>
+      </form>
+  
+      <!-- Resultado alineado a la derecha -->
+      <div class="resultado" *ngIf="edad !== undefined && signoZodiacal">
+        <h3>Hola {{ formulario.value.nombre }} {{ formulario.value.apellido }}</h3>
+        <p>Tienes {{ edad }} años.</p>
+        <p>Tu signo zodiacal chino es: {{ signoZodiacal }}</p>
+        <img *ngIf="imagenUrl" [src]="imagenUrl" alt="{{ signoZodiacal }}" class="signo-imagen" />
+      </div>
+    </div>
+  </div>
+  
